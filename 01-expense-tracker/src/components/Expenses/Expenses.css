@@ -1,0 +1,16 @@
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.expenses {
+    max-width: 75vw;
+    width: 600px;
+    margin: auto;
+}
+
+.no-expense {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
