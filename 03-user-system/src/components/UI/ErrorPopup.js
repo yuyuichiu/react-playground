@@ -1,9 +1,8 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 import Button from "./Button";
-import Wrapper from "../Helper/Wrapper";
-import "./ErrorPopup.css";
 
 const ErrorMsg = styled.div`
     position: fixed;
@@ -32,14 +31,24 @@ const ErrorMsg = styled.div`
     }
 `
 
+const Backdrop = styled.div`
+  display: ${props => props.hide ? 'none' : 'block'};
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: rgba(0,0,0,0.3);
+`
+
 export default function ErrorPopup(props) {
   const clickHandler = () => {
-      console.log('I hear you');
       props.onErrorClear();
   }
 
-  return (
-    <div className={`backdrop ${props.error.hide && 'hide'}`}>
+  // Portal: render Pop-up to separate <div> without disrupting other logics
+  return (<>
+    {ReactDOM.createPortal((<Backdrop hide={props.error.hide}>
       <ErrorMsg>
         <header>
           <h2>{props.error.title}</h2>
@@ -51,6 +60,6 @@ export default function ErrorPopup(props) {
           <Button onClick={clickHandler}>Understand</Button>
         </footer>
       </ErrorMsg>
-    </div>
-  );
+    </Backdrop>), document.getElementById('backdrop-root'))}
+  </>);
 }

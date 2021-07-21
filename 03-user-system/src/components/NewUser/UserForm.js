@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 import Card from "../UI/Card";
@@ -15,25 +15,14 @@ const UserInput = styled.input`
 `;
 
 export default function UserForm(props) {
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [state, setState] = useState({
     nameInvalid: false,
     ageInvalid: false,
-    name: "",
-    age: "",
   });
   const [error, setError] = useState({hide: true});
-
-  const nameInputHandler = (e) => {
-    setState((prevState) => {
-      return { ...prevState, name: e.target.value, nameInvalid: false };
-    });
-  };
-
-  const ageInputHandler = (e) => {
-    setState((prevState) => {
-      return { ...prevState, age: e.target.value, ageInvalid: false };
-    });
-  };
 
   const errorClearHandler = () => {
     setError({hide: true})
@@ -42,12 +31,12 @@ export default function UserForm(props) {
   const submitHandler = (event) => {
     event.preventDefault();
     // Invalid: pop up the error message
-    if (state.name.length === 0 || state.age.length === 0) {
+    if (nameInputRef.current.value.length === 0 || ageInputRef.current.value.length === 0) {
       setState((prevState) => {
         return {
           ...prevState,
-          nameInvalid: state.name.length === 0 ? true : false,
-          ageInvalid: state.age.length === 0 ? true : false,
+          nameInvalid: nameInputRef.current.value.length === 0 ? true : false,
+          ageInvalid: ageInputRef.current.value.length === 0 ? true : false,
         };
       });
       setError({
@@ -57,13 +46,13 @@ export default function UserForm(props) {
       })
       return;
     }
-
     // Valid: post user on the dom
-    setState((prevState) => {
-      return { ...prevState, name: "", age: "" };
-    });
-    setError({hide: true})
-    props.onUserAdded({name: state.name, age: state.age});
+    else {
+      setError({hide: true})
+      props.onUserAdded({name: nameInputRef.current.value, age: ageInputRef.current.value});
+      nameInputRef.current.value = '';
+      ageInputRef.current.value = '';
+    }
   };
 
   return (<div>
@@ -73,17 +62,15 @@ export default function UserForm(props) {
         <label>Username</label>
         <UserInput
           type="text"
-          onChange={nameInputHandler}
           invalid={state.nameInvalid}
-          value={state.name}
           id="username"
+          ref={nameInputRef}
         />
         <label>Age (in Years)</label>
         <UserInput
           type="number"
-          onChange={ageInputHandler}
           invalid={state.ageInvalid}
-          value={state.age}
+          ref={ageInputRef}
           id="Age"
           min="0"
           step="1"
