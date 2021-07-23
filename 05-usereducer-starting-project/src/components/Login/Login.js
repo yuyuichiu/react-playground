@@ -3,6 +3,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import Input from '../UI/Input/Input';
 
 // action attributes -- type & value
 const emailReducer = (prevState, action) => {
@@ -47,11 +48,10 @@ const Login = (props) => {
   })
 
   
+  // Alias for destructuring
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: pwIsValid } = pwState;
   useEffect(function() {
-    // Alias for destructuring
-    const { isValid: emailIsValid } = emailState;
-    const { isValid: pwIsValid } = pwState;
-    
     let formValidator = setTimeout(() => {
       setFormIsValid(emailIsValid && pwIsValid)
       console.log('timer executed')
@@ -86,27 +86,22 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
+        <Input
+          type="email"
+          id="email"
+          label="E-mail"
+          isValid={emailIsValid}
+          value={emailState.value}
+          onChange={emailChangeHandler}
+          onBlur={validateEmailHandler}
+        />
         <div
           className={`${classes.control} ${
             pwState.isValid === false ? classes.invalid : ''
           }`}
         >
           <label htmlFor="password">Password</label>
-          <input
+          <Input
             type="password"
             id="password"
             value={pwState.value}
