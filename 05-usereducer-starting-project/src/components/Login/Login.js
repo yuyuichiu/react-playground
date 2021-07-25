@@ -4,6 +4,7 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import Input from '../UI/Input/Input';
+import AuthContext from '../../context/auth-context';
 
 // action attributes -- type & value
 const emailReducer = (prevState, action) => {
@@ -104,6 +105,7 @@ const Login = (props) => {
           <Input
             type="password"
             id="password"
+            label='Password'
             value={pwState.value}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
