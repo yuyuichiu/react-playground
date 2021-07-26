@@ -1,0 +1,44 @@
+.foodItem {
+  display: flex;
+  padding: 7px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(206, 206, 206);
+}
+
+.formControl{
+  display: flex;
+}
+
+.foodInfo {
+  font-style: italic;
+}
+
+.foodPrice {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(151, 142, 20);
+}
+
+.cartAddBtn {
+  float: right;
+  margin: 5px 7px;
+  padding: 5px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(255, 247, 133);
+  box-shadow: 0px 1px 3px rgba(69, 77, 1, 0.3);
+}
+
+.cartAddBtn:active {
+  transform: scale(0.97);
+}
+
+.foodItem label {
+  font-weight: bold;
+}
+
+.foodItem input{
+  width: 50px;
+}

@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import Header from "./components/Header/Header";
+import Foods from "./components/Foods/Foods";
+import Cart from './components/Cart/Cart'
+
+import "./App.css";
 
 function App() {
+  const [cartVisible, setCartVisible] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  // add item into cart
+  const cartAddItemHandler = (info) => {
+    // Update existing item / add a new item
+    setCart((prevCart) => {
+      console.log(prevCart)
+      for(let i = 0; i < prevCart.length; i++){
+        if(prevCart[i].id === info.id){
+          prevCart[i].amount += info.amount
+          return prevCart
+        }
+      }
+
+      prevCart.push({
+        id: info.id,
+        title: info.title,
+        price: info.price,
+        amount: info.amount
+      });
+      return prevCart
+    });
+  }
+
+  // toggle visibility of cart UI
+  const cartOpenHandler = () => {
+    setCartVisible(true);
+  }
+
+  const cartExitHandler = () => {
+    setCartVisible(false);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header onCartOpen={cartOpenHandler}/>
+      {cartVisible && <Cart cart={cart} onCartExit={cartExitHandler}/>}
+      <Foods onAddCartItem={cartAddItemHandler}/>
+    </>
   );
 }
 

@@ -1,0 +1,14 @@
+.cartBtn {
+  width: 150px;
+  height: 38px;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  border-radius: 30px;
+  font-family: inherit;
+  border: 3px solid #fff;
+  font-size: 16px;
+}
+
+.cartBtn:hover {
+  transform: scale(1.1);
+}

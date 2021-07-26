@@ -1,0 +1,15 @@
+.button {
+  position: relative;
+  float: right;
+  margin: 5px 7px;
+  padding: 5px 20px;
+  background-color: #fff785;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(69, 77, 1, 0.3);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
