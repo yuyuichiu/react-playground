@@ -6,6 +6,11 @@
   border-bottom: 1px solid rgb(206, 206, 206);
 }
 
+.foodItemControl {
+  display: flex;
+  gap: 15px;
+}
+
 .formControl{
   display: flex;
 }

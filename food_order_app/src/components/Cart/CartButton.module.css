@@ -1,5 +1,5 @@
 .cartBtn {
-  width: 150px;
+  width: 180px;
   height: 38px;
   background-color: rgb(255, 255, 255);
   cursor: pointer;
@@ -7,8 +7,32 @@
   font-family: inherit;
   border: 3px solid #fff;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: enlarge 0.2s linear;
 }
 
 .cartBtn:hover {
   transform: scale(1.1);
+}
+
+@keyframes enlarge {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.itemCount {
+  padding: 5px 15px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background-color: rgb(161, 147, 67);
+  color: #fff;
 }

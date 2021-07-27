@@ -1,27 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import ActionButton from '../UI/ActionButton'
 
 import styles from './FoodItem.module.css'
 
 export default function FoodItem(props) {
-  const [enteredAmt, setEnteredAmt] = useState(0);
+  // const [enteredAmt, setEnteredAmt] = useState(0);
+  const refContainer = useRef('0');
+
+  useEffect(() => { refContainer.current.value = 0; }, [])
 
   const addItemHandler = () => {
     let toAdd = {
       id: Number(props.foodInfo.id),
       title: props.foodInfo.title,
-      price: props.foodInfo.price,
-      amount: enteredAmt,  // to-do input handling
+      price: Number(props.foodInfo.price),
+      amount: Number(refContainer.current.value),
     }
     if(toAdd.amount > 0){
       props.onAddCartItem(toAdd);
     } else return
   }
 
-  const amountChangeHandler = (e) => {
-    setEnteredAmt(Number(e.target.value))
-  }
+  // const amountChangeHandler = (e) => {
+  //   setEnteredAmt(Number(e.target.value))
+  // }
 
   return(<div className={styles.foodItem}>
       <div className={styles.foodItemControl}>
@@ -33,7 +36,7 @@ export default function FoodItem(props) {
       <div className={styles.foodItemControl}>
         <div>
           <label>Amount: </label>
-          <input type="number" value={enteredAmt} onChange={amountChangeHandler} className={styles.orderInput} min="0" step="1"/>
+          <input type="number" ref={refContainer} className={styles.orderInput} min="0" step="1"/>
         </div>
         <ActionButton onClick={addItemHandler} className={styles.cartAddBtn}>+ Add</ActionButton>
       </div>
