@@ -33,7 +33,7 @@ const mealList = [
 
 // Styling for the list to be by item.
 export default function AvailableMeals(props) {
-  const mealItems = mealList.map((meal) => <li><MealItems meal={meal}/></li>)
+  const mealItems = mealList.map((meal, idx) => <MealItems key={idx} meal={meal}/>)
 
   return <section className={styles.meals}>
     <Card>
