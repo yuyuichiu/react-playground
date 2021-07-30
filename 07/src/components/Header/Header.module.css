@@ -1,0 +1,29 @@
+.header {
+  background-color: #fff;
+  width: 60vw;
+  height: 70px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  padding: 0 5%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header img {
+  height: 35px;
+  object-fit: cover;
+}
+
+.header span {
+  margin: 0 7px;
+  font-size: 12px;
+}
+
+.header small {
+  cursor: pointer;
+}
+
+.header__toolbox{
+  float: right;
+  height: 30px;
+}
