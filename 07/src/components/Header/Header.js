@@ -7,6 +7,7 @@ import logo from '../../assets/fakeph_logo.png'
 const Header = (props) => {
   return <header className={styles.header}>
     <img src={logo}></img>
+    
     <div className={styles['header__toolbox']}>
       <small><FaUserCircle /> Login/Create your account</small>
       <span>|</span>

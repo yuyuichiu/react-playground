@@ -1,0 +1,11 @@
+.bar {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  height: 70px;
+  width: calc(70vw - 2px);
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
