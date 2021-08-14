@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 // Reusable hook for http requests
 export default function useHttp() {
@@ -11,24 +11,26 @@ export default function useHttp() {
     responseConfig -- Object keys: url, method, header, body
     dataProcessor -- Unique function for components to handle their received data.
   */
-  const sendRequest = useCallback(async (responseConfig, dataProcessor) => {
+  const sendRequest = useCallback(async (responseConfig, applyData) => {
     setIsLoading(true);
     setError(null);
 
-    try {
-      // Establish a http request based on responseConfig param
+    try{
       const response = await fetch(responseConfig.url, {
-        method: responseConfig.method ? responseConfig.method : "GET",
+        method: responseConfig.method ? responseConfig.method : 'GET',
         header: responseConfig.header ? responseConfig.header : {},
         body: responseConfig.body ? JSON.stringify(responseConfig.body) : null,
       });
 
+      if (!response.ok){
+        throw new Error('Something went wrong. Please try again later.')
+      }
+
       const data = await response.json();
 
-      // Provide flexibility for component to handle data in its way.
-      dataProcessor(data);
+      applyData(data);
     } catch (error) {
-      setError(error.message);
+      setError(error.message)
     }
 
     setIsLoading(false);

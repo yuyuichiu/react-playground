@@ -28,7 +28,7 @@ function App() {
         'Content-Type': 'application/json',
       },
     }, taskDataApply);
-  }, []);
+  }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
