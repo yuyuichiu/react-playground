@@ -3,7 +3,7 @@ import { useState } from 'react'
 // When constructing a custom hook, think of common functionalities
 export default function useInput(validateValue) {
   // Common states
-  const [enteredValue, setEnteredValue] = useState('')
+  const [enteredValue, setEnteredValue] = useState('');
   const [isTouched, setIsTouched] = useState(false);
   
   // validation is unique, handled by the parameter function

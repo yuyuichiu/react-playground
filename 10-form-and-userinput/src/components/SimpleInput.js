@@ -51,6 +51,7 @@ const SimpleInput = (props) => {
       emailChangeHandler('');
       nameBlurHandler(false);
       emailBlurHandler(false);
+      setIsFormValid(false);
     }
   }
 
