@@ -1,0 +1,56 @@
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.meetupForm {
+  background-color: rgb(255, 243, 210);
+  margin: 30px;
+  width: 75%;
+  border-radius: 5px;
+  box-shadow: 1px 4px 5px rgba(0,0,0,0.3);  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 30px;
+  width: calc(100% - 60px);
+}
+
+.formInput label {
+  font-size: 18px;
+}
+
+.formInput.invalid label {
+  color:rgb(150, 17, 0);
+}
+
+.formInput input, .formInput textarea {
+  border: 2px solid rgb(219, 181, 99);
+  border-radius: 5px;
+  margin: 3px;
+  padding: 3px;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.formInput.invalid input, .formInput.invalid textarea {
+  color:rgb(150, 17, 0);
+  background-color: rgb(247, 200, 194);
+  border: 2px solid rgb(255, 170, 159);
+}
+
+.formInput textarea {
+  height: 80px;
+}
+
+.formBtn {
+  width: 200px;
+  font-size: 16px;
+  margin: 10px;
+}

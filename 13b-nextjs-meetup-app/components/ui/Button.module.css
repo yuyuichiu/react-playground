@@ -1,0 +1,17 @@
+.btn {
+  background-color: rgb(255, 242, 124);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 2px solid rgb(155, 147, 76);
+  color:rgb(105, 99, 42);
+}
+
+.btn:disabled {
+  background-color: #eee;
+  border: 2px solid #ddd;
+  color:#aaa;
+}
