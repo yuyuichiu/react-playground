@@ -1,11 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 
 import './App.css';
 
 function App() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => console.log(data);
 
   return (
@@ -30,14 +29,14 @@ function App() {
         {errors.lastname && <span>{errors.lastname.message}</span>}
 
         <label htmlFor='age'>Age</label>
-        <input type='number' {...register('age', { 
+        <input type='number' name='age' {...register('age', { 
           min: { value: 1, message: 'Please enter a valid age' },
           max: { value: 150, message: 'Please enter a valid age' },
-          required: true
+          required: 'This field is required',
         })}></input>
         {errors.age && <span>{errors.age.message}</span>}
 
-        <label htmlFOr='isDeveloper'>Are you a developer?</label>
+        <label htmlFor='isDeveloper'>Are you a developer?</label>
         <select {...register('isDeveloper', { required: 'This field is required' })}>
           <option value="yes">Yes</option>
           <option value='no'>No</option>
